@@ -1,17 +1,9 @@
-import "./App.css";
+import Home from "./pages/Home";
 
 function App() {
   // write your js code
 
-  return (
-    <>
-      <div>
-        <p>hello world</p>
-      </div>
-
-      <p>this is paragraph</p>
-    </>
-  );
+  return <Home />;
 }
 
 export default App;

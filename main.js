@@ -48,3 +48,9 @@ const data = {
 };
 
 const newData = { ...user };
+
+function greet(name) {
+  return "hello" + name;
+}
+
+greet("sam");
