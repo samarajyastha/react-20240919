@@ -1,10 +1,8 @@
-import Navbar from "../components/Navbar";
-
 const Home = () => {
   return (
-    <div>
-      <Navbar />
-    </div>
+    <section>
+      <h1 className="mt-24">Home page</h1>
+    </section>
   );
 };
 
