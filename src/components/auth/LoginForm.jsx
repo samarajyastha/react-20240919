@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { HOME_ROUTE } from "../../constants/routes";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/auth/authSlice";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,10 +17,14 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   function submitForm(data) {
     login(data)
       .then((response) => {
         console.log(response.data);
+
+        dispatch(setUser(response.data));
 
         navigate(HOME_ROUTE);
       })

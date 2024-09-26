@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import LoginForm from "../../components/auth/LoginForm";
 import { REGISTER_ROUTE } from "../../constants/routes";
+import { Link } from "react-router-dom";
 import loginBg from "../../assets/img/login-bg.png";
+import LoginForm from "../../components/auth/LoginForm";
 
 const Login = () => {
   return (
