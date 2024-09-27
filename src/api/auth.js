@@ -10,4 +10,15 @@ const login = async ({ email, password }) => {
   return response;
 };
 
-export { login };
+const register = async ({ name, email, password, confirmPassword }) => {
+  const response = await axios.post(`${config.baseApiUrl}/api/auth/register`, {
+    name,
+    email,
+    password,
+    confirmPassword,
+  });
+
+  return response;
+};
+
+export { login, register };

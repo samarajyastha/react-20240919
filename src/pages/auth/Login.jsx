@@ -18,7 +18,7 @@ const Login = () => {
             </p>
             <p className="mt-8">
               Do not have an account? Please
-              <Link to={REGISTER_ROUTE} className="text-blue-600 ml-2">
+              <Link to={REGISTER_ROUTE} className="text-teal-800 ml-2">
                 Register
               </Link>
             </p>
