@@ -21,6 +21,7 @@ import ProductList from "./pages/products/List";
 import ProductDetails from "./pages/products/Details";
 import AuthLayout from "./layouts/AuthLayout";
 import UnAuthLayout from "./layouts/UnAuthLayout";
+import AddProduct from "./pages/products/Add";
 
 const Routes = () => {
   const router = createBrowserRouter(
@@ -34,6 +35,7 @@ const Routes = () => {
           <Route path={PRODUCTS_ROUTE}>
             <Route index element={<ProductList />} />
             <Route path={":id"} element={<ProductDetails />} />
+            <Route path={"add"} element={<AddProduct />} />
           </Route>
         </Route>
 

@@ -1,9 +1,12 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getProductById } from "../../api/products";
 import { FaCartPlus, FaStar, FaStarHalf } from "react-icons/fa";
 import jacket from "../../assets/img/jacket.png";
 import Title from "../../components/Title";
+import { PRODUCTS_ROUTE } from "../../constants/routes";
+import { BiLeftArrowAlt } from "react-icons/bi";
+import Spinner from "../../components/Spinner";
 
 const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -21,16 +24,25 @@ const ProductDetails = () => {
       .catch((error) => {
         console.log(error.response.data);
       });
-  }, []);
+  }, [params.id]);
 
-  if (loading) return <div className="text-center text-xl p-5">Loading...</div>;
+  if (loading)
+    return (
+      <div className="flex items-center justify-center h-96">
+        <Spinner className="h-16 w-16" />
+      </div>
+    );
 
   return (
     <section className="py-12">
+      <Link to={PRODUCTS_ROUTE} className="px-5 py-2 flex items-center">
+        <BiLeftArrowAlt className="mr-1" />
+        Back
+      </Link>
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-around">
           <img
-            src={product.url ?? jacket}
+            src={product?.url ?? jacket}
             alt=""
             className="w-auto max-h-[80vh]"
           />

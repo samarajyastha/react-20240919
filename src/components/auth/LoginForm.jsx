@@ -80,9 +80,10 @@ const LoginForm = () => {
       <div className="mt-5 text-center">
         <button
           type="submit"
-          className="bg-teal-700 text-white rounded px-5 py-1 cursor-pointer"
+          className="bg-teal-700 text-white rounded px-5 py-1 cursor-pointer flex items-center mx-auto"
         >
-          Login {loading ? <Spinner className="h-4 w-4 ml-1" /> : null}
+          Login
+          {loading ? <Spinner className="h-[1.2rem] w-[1.2rem] ml-1" /> : null}
         </button>
       </div>
     </form>
