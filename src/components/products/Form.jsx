@@ -1,26 +1,38 @@
 import { useForm } from "react-hook-form";
-import { addProduct } from "../../api/products";
+import { addProduct, editProduct } from "../../api/products";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { PRODUCTS_ROUTE } from "../../constants/routes";
 import { useState } from "react";
 import Spinner from "../Spinner";
 
-const ProductsForm = () => {
+// eslint-disable-next-line react/prop-types
+const ProductsForm = ({ product }) => {
   const [loading, setLoading] = useState(false);
-  const { register, formState, handleSubmit } = useForm();
+  const { register, formState, handleSubmit } = useForm({
+    values: product,
+  });
 
   const { errors } = formState;
 
   const navigate = useNavigate();
 
+  const isEditing = product ? true : false;
+
   async function submitForm(data) {
     setLoading(true);
 
-    try {
-      await addProduct(data);
+    if (!data.url) delete data.url;
 
-      toast("Product added successfully.", {
+    try {
+      if (isEditing) {
+        // eslint-disable-next-line react/prop-types
+        await editProduct(product._id, data);
+      } else {
+        await addProduct(data);
+      }
+
+      toast(`Product ${isEditing ? "updated" : "added"} successfully.`, {
         type: "success",
         autoClose: 1500,
       });
@@ -111,9 +123,10 @@ const ProductsForm = () => {
       <div className="mt-5 text-center">
         <button
           type="submit"
-          className="bg-teal-700 text-white rounded px-5 py-1 cursor-pointer flex items-center mx-auto"
+          disabled={loading}
+          className="bg-teal-700 text-white rounded px-5 py-1 cursor-pointer flex items-center mx-auto disabled:opacity-75 disabled:cursor-not-allowed"
         >
-          Add Product
+          {isEditing ? "Edit Product" : "Add Product"}
           {loading ? <Spinner className="h-[1.2rem] w-[1.2rem] ml-1" /> : null}
         </button>
       </div>

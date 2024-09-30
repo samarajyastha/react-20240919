@@ -1,25 +1,19 @@
-import { useEffect, useState } from "react";
-import { getProducts } from "../../api/products";
+import { useEffect } from "react";
 import ProductsCard from "../../components/products/Card";
 import Title from "../../components/Title";
 import { Link } from "react-router-dom";
 import ProductsLoader from "../../components/products/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../redux/products/productActions";
 
 const ProductList = () => {
-  const [loading, setLoading] = useState(true);
-  const [productList, setProductList] = useState([]);
+  const { loading, products } = useSelector((state) => state.products);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getProducts()
-      .then((response) => {
-        setProductList(response.data);
-
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      });
-  }, []);
+    dispatch(getAllProducts());
+  }, [dispatch]);
 
   return (
     <section className="py-12 bg-slate-100">
@@ -36,7 +30,7 @@ const ProductList = () => {
             <ProductsLoader />
           ) : (
             <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
-              {productList.map((product) => (
+              {products.map((product) => (
                 <ProductsCard key={product._id} id={product._id} {...product} />
               ))}
             </div>

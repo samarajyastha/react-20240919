@@ -11,6 +11,7 @@ const authSlice = createSlice({
   reducers: {
     logoutUser(state) {
       state.user = null;
+      localStorage.removeItem("authToken");
     },
   },
   extraReducers: (builder) => {

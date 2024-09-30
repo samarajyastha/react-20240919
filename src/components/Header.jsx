@@ -5,6 +5,7 @@ import { HOME_ROUTE } from "../constants/routes";
 import navMenu from "../constants/navMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/auth/authSlice";
+import { BiLogOut } from "react-icons/bi";
 
 const Header = () => {
   const navLinkClass = ({ isActive }) => (isActive ? "text-teal-700" : "");
@@ -35,10 +36,11 @@ const Header = () => {
           {user ? (
             <button
               type="button"
-              className="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
+              className="flex items-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
               onClick={logout}
             >
               Logout
+              <BiLogOut  className="ml-2"/>
             </button>
           ) : null}
           <button

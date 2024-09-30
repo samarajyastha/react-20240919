@@ -27,12 +27,39 @@ const addProduct = async (data) => {
   return response;
 };
 
-export { getProducts, getProductById, addProduct };
+const editProduct = async (id, data) => {
+  const response = await axios.put(
+    `${config.baseApiUrl}/api/products/${id}`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    }
+  );
+
+  return response;
+};
+
+const deleteProduct = async (id) => {
+  const response = await axios.delete(
+    `${config.baseApiUrl}/api/products/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    }
+  );
+
+  return response;
+};
+
+export { getProducts, getProductById, addProduct, editProduct, deleteProduct };
 
 // HTTP Methods
 /**
  * GET = Read (Done)
- * POST = Create
- * PUT = Update
- * DELETE = Delete
+ * POST = Create (Done)
+ * PUT = Update (Done)
+ * DELETE = Delete (Done)
  */
