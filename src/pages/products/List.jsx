@@ -4,16 +4,21 @@ import Title from "../../components/Title";
 import { Link } from "react-router-dom";
 import ProductsLoader from "../../components/products/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/products/productActions";
+import {
+  getAllProducts,
+  getProductCategories,
+} from "../../redux/products/productActions";
+import ProductsFilter from "../../components/products/Filter";
 
 const ProductList = () => {
-  const { loading, products } = useSelector((state) => state.products);
+  const { loading, products, query } = useSelector((state) => state.products);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
+    dispatch(getAllProducts(query));
+    dispatch(getProductCategories());
+  }, [dispatch, query]);
 
   return (
     <section className="py-12 bg-slate-100">
@@ -26,6 +31,8 @@ const ProductList = () => {
         </div>
 
         <div className="py-8">
+          <ProductsFilter />
+
           {loading ? (
             <ProductsLoader />
           ) : (

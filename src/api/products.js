@@ -3,9 +3,19 @@ import config from "../config/config";
 
 const authToken = localStorage.getItem("authToken");
 
-const getProducts = async () => {
+const getProducts = async ({
+  limit = 10,
+  sort = JSON.stringify({ createdAt: -1 }),
+  filters = {},
+}) => {
+  // sort: sorting key, sort order (1: ASC, -1: DESC)
+  // filterBy: key, value for e.g name: iphone
+  const query = `limit=${limit}&sort=${sort}&filters=${JSON.stringify(
+    filters
+  )}`;
+
   const response = await axios.get(
-    `${config.baseApiUrl}/api/products?limit=50`
+    `${config.baseApiUrl}/api/products?${query}`
   );
 
   return response;
@@ -15,6 +25,10 @@ const getProductById = async (id) => {
   const response = await axios.get(`${config.baseApiUrl}/api/products/${id}`);
 
   return response;
+};
+
+const getCategories = async () => {
+  return await axios.get(`${config.baseApiUrl}/api/products/categories`);
 };
 
 const addProduct = async (data) => {
@@ -54,7 +68,14 @@ const deleteProduct = async (id) => {
   return response;
 };
 
-export { getProducts, getProductById, addProduct, editProduct, deleteProduct };
+export {
+  getProducts,
+  getProductById,
+  addProduct,
+  editProduct,
+  deleteProduct,
+  getCategories,
+};
 
 // HTTP Methods
 /**

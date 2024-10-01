@@ -27,7 +27,7 @@ const ProductsCard = ({ id, name, brand, category, price, url }) => {
         autoClose: 1500,
       });
 
-      dispatch(getAllProducts());
+      dispatch(getAllProducts({}));
     } catch (error) {
       toast(error.response.data, {
         type: "error",
