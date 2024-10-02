@@ -1,6 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getAllProducts, getProductCategories } from "./productActions";
 
+const initialQueryState = {
+  filters: {
+    name: "",
+    category: "",
+  },
+  sort: JSON.stringify({ createdAt: -1 }),
+  limit: 10,
+};
+
 const productSlice = createSlice({
   name: "products",
   initialState: {
@@ -8,7 +17,7 @@ const productSlice = createSlice({
     error: null,
     products: [],
     categories: [],
-    query: {},
+    query: initialQueryState,
   },
   reducers: {
     setLimit: (state, action) => {
@@ -19,6 +28,9 @@ const productSlice = createSlice({
     },
     setFilters: (state, action) => {
       state.query.filters = { ...state.query.filters, ...action.payload };
+    },
+    resetQuery: (state) => {
+      state.query = initialQueryState;
     },
   },
   extraReducers: (builder) => {
@@ -50,6 +62,7 @@ const productSlice = createSlice({
   },
 });
 
-export const { setLimit, setSort, setFilters } = productSlice.actions;
+export const { setLimit, setSort, setFilters, resetQuery } =
+  productSlice.actions;
 
 export default productSlice.reducer;

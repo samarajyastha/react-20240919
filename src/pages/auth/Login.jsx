@@ -6,9 +6,9 @@ import LoginForm from "../../components/auth/LoginForm";
 const Login = () => {
   return (
     <section className="py-12">
-      <img src={loginBg} alt="" className="fixed top-0 left-0 opacity-10 -z-10"/>
-      <div className="max-w-screen-xl mx-auto px-4 h-[70vh]">
-        <div className="flex flex-col xl:flex-row items-center justify-around h-full">
+      <img src={loginBg} className="fixed top-0 left-0 opacity-10 -z-10" />
+      <div className="max-w-screen-xl mx-auto px-4">
+        <div className="flex flex-col xl:flex-row items-center justify-around min-h-[75vh]">
           <div className="md:w-1/2">
             <p className="text-3xl">Welcome to our</p>
             <h1 className="text-7xl text-teal-700">Shopping Site</h1>

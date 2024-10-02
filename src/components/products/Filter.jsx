@@ -6,7 +6,8 @@ import {
 } from "../../redux/products/productSlice";
 
 const ProductsFilter = () => {
-  const { categories } = useSelector((state) => state.products);
+
+  const { categories, query } = useSelector((state) => state.products);
 
   const dispatch = useDispatch();
 
@@ -27,13 +28,14 @@ const ProductsFilter = () => {
   }
 
   return (
-    <div className="border bg-white mb-8 px-5 py-3 rounded-md grid items-center md:grid-cols-2 xl:grid-cols-4 gap-3 w-full ">
+    <div className="border bg-white mb-8 px-5 py-3 rounded-md grid items-center md:grid-cols-2 xl:grid-cols-4 gap-3 w-full">
       <div className="xl:mx-auto">
         <label htmlFor="name">Name: </label>
         <input
           type="text"
           id="name"
           className="border ml-2 py-1 px-2"
+          value={query?.filters?.name}
           onChange={(e) => filterByName(e.target.value)}
         />
       </div>
@@ -43,11 +45,10 @@ const ProductsFilter = () => {
           name="category"
           id="category"
           className="border ml-2 py-1 px-2"
+          value={query?.filters?.category}
           onChange={(e) => filterByCategory(e.target.value)}
         >
-          <option value="" selected>
-            Select category
-          </option>
+          <option value="">Select category</option>
           {categories.map((category, index) => (
             <option key={index} value={category}>
               {category}
@@ -61,6 +62,7 @@ const ProductsFilter = () => {
           name="sort"
           id="sort"
           className="border ml-2 py-1 px-2"
+          value={query?.sort}
           onChange={(e) => sortProducts(e.target.value)}
         >
           <option value={JSON.stringify({ createdAt: -1 })}>Latest</option>
@@ -79,6 +81,7 @@ const ProductsFilter = () => {
           name="limit"
           id="limit"
           className="border ml-2 py-1 px-2"
+          value={query?.limit}
           onChange={(e) => setProductLimit(e.target.value)}
         >
           <option value="10">10</option>
