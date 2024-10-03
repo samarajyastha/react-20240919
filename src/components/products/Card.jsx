@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { FaPencil, FaTrash } from "react-icons/fa6";
 import imagePlaceholder from "../../assets/img/img_placeholder.jpg";
+import { PRODUCTS_ROUTE } from "../../constants/routes";
 
 const ProductsCard = ({
   id,
@@ -12,6 +13,7 @@ const ProductsCard = ({
   url,
   setSelectedProductId,
   setIsOpen,
+  isEditable = false,
 }) => {
   function removeProduct() {
     setSelectedProductId(id);
@@ -23,7 +25,7 @@ const ProductsCard = ({
       <span className="bg-teal-950 text-xs px-2 py-1 rounded-xl text-white absolute right-4 top-4">
         {category}
       </span>
-      <Link to={id}>
+      <Link to={`${PRODUCTS_ROUTE}/${id}`}>
         <img
           src={url ?? imagePlaceholder}
           alt=""
@@ -40,25 +42,27 @@ const ProductsCard = ({
         </p>
         <div className="flex justify-between">
           <Link
-            to={id}
+            to={`${PRODUCTS_ROUTE}/${id}`}
             className="bg-teal-800 px-3 py-1 text-white rounded hover:bg-teal-900"
           >
             Buy Now
           </Link>
-          <div className="flex">
-            <Link
-              to={`edit/${id}`}
-              className="bg-blue-500 px-3 pt-2 text-white rounded hover:bg-blue-600"
-            >
-              <FaPencil />
-            </Link>
-            <button
-              className="bg-red-500 px-3 ml-3 text-white rounded hover:bg-red-600"
-              onClick={removeProduct}
-            >
-              <FaTrash />
-            </button>
-          </div>
+          {isEditable ? (
+            <div className="flex">
+              <Link
+                to={`edit/${id}`}
+                className="bg-blue-500 px-3 pt-2 text-white rounded hover:bg-blue-600"
+              >
+                <FaPencil />
+              </Link>
+              <button
+                className="bg-red-500 px-3 ml-3 text-white rounded hover:bg-red-600"
+                onClick={removeProduct}
+              >
+                <FaTrash />
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

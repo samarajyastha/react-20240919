@@ -1,52 +1,35 @@
 import samsungTv from "../../assets/img/samsung-tv.png";
 import jacket from "../../assets/img/jacket.png";
 import cetaphil from "../../assets/img/cetaphil.png";
+import onePlus from "../../assets/img/op-nord-3.png";
 import { Carousel } from "react-responsive-carousel";
+import CarouselItem from "./CarouselItem";
+import Feature from "./Feature";
+import { BiCreditCard } from "react-icons/bi";
+import { TbTruckReturn } from "react-icons/tb";
+import { FaShippingFast } from "react-icons/fa";
 
 const Hero = () => {
   return (
-    <Carousel
-      className="bg-teal-500"
-      autoPlay
-      showThumbs={false}
-      showArrows={false}
-      showIndicators={false}
-      infiniteLoop
-    >
-      <div className="grid grid-cols-2 items-center px-40 py-12">
-        <div className="px-10">
-          <h1 className="text-white text-6xl">Samsung QLED TV</h1>
-          <p className="mt-5 text-white">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui culpa
-            obcaecati, accusamus soluta fuga voluptate consectetur facilis illum
-            ratione distinctio?
-          </p>
-        </div>
-        <img src={samsungTv} />
+    <div className="relative">
+      <Carousel
+        className="bg-teal-400"
+        autoPlay
+        showThumbs={false}
+        showArrows={false}
+        infiniteLoop
+      >
+        <CarouselItem label="Samsung QLED TV" imgSrc={samsungTv} />
+        <CarouselItem label="Levis Jacket" imgSrc={jacket} />
+        <CarouselItem label="Cetaphil Mosturizer" imgSrc={cetaphil} />
+        <CarouselItem label="One Plus Nord 3" imgSrc={onePlus} />
+      </Carousel>
+      <div className="absolute -bottom-10 left-[15%] z-10 xl:flex justify-center hidden">
+        <Feature label="Free Shipping" icon={<FaShippingFast />} />
+        <Feature label="Easy Return" icon={<TbTruckReturn />} />
+        <Feature label="Card Payment" icon={<BiCreditCard />} />
       </div>
-      <div className="grid grid-cols-2 items-center px-40 py-12">
-        <div className="px-10">
-          <h1 className="text-white text-6xl">Levis Jacket</h1>
-          <p className="mt-5 text-white">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui culpa
-            obcaecati, accusamus soluta fuga voluptate consectetur facilis illum
-            ratione distinctio?
-          </p>
-        </div>
-        <img src={jacket} />
-      </div>
-      <div className="grid grid-cols-2 items-center px-40 py-12">
-        <div className="px-10">
-          <h1 className="text-white text-6xl">Cetaphil Mosturizer</h1>
-          <p className="mt-5 text-white">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui culpa
-            obcaecati, accusamus soluta fuga voluptate consectetur facilis illum
-            ratione distinctio?
-          </p>
-        </div>
-        <img src={cetaphil} />
-      </div>
-    </Carousel>
+    </div>
   );
 };
 

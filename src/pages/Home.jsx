@@ -1,19 +1,41 @@
-import { useSelector } from "react-redux";
 import Hero from "../components/home/Hero";
-import ProductsCard from "../components/products/Card";
+import CategorizedProducts from "../components/home/CategorizedProducts";
+import AllProducts from "../components/home/AllProducts";
+import Modal from "../components/Modal";
+import { useEffect, useState } from "react";
+import cetaphil from "../assets/img/cetaphil.png";
 
 const Home = () => {
-  const { products } = useSelector((state) => state.products);
+  const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 5000);
+  }, []);
 
   return (
-    <section>
-      <Hero />
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
-        {products.map((product) => (
-          <ProductsCard key={product._id} id={product._id} {...product} />
-        ))}
-      </div>
-    </section>
+    <>
+      <section>
+        <Hero />
+      </section>
+      <section className="py-24">
+        <AllProducts />
+      </section>
+      <section className="py-16 bg-gray-100">
+        <CategorizedProducts category="laptop" />
+      </section>
+      <section className="py-16">
+        <CategorizedProducts category="smartphone" />
+      </section>
+
+      <Modal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        label="Featured Product"
+        body={<img src={cetaphil} />}
+      />
+    </>
   );
 };
 
