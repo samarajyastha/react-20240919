@@ -6,7 +6,7 @@ import navMenu from "../constants/navMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/auth/authSlice";
 import { BiCartAdd, BiLogOut } from "react-icons/bi";
-import CartDropdown from "./cart/dropdown";
+import CartDropdown from "./cart/Dropdown";
 
 const Header = () => {
   const navLinkClass = ({ isActive }) => (isActive ? "text-teal-700" : "");
