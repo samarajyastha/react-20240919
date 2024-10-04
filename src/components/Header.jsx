@@ -5,12 +5,14 @@ import { HOME_ROUTE } from "../constants/routes";
 import navMenu from "../constants/navMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/auth/authSlice";
-import { BiLogOut } from "react-icons/bi";
+import { BiCartAdd, BiLogOut } from "react-icons/bi";
+import CartDropdown from "./cart/dropdown";
 
 const Header = () => {
   const navLinkClass = ({ isActive }) => (isActive ? "text-teal-700" : "");
 
   const [isMobileMenuHidden, setIsMobileMenuHidden] = useState(true);
+  const [showCart, setShowCart] = useState(false);
 
   const { user } = useSelector((state) => state.auth);
 
@@ -34,14 +36,25 @@ const Header = () => {
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           {user ? (
-            <button
-              type="button"
-              className="flex items-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
-              onClick={logout}
-            >
-              Logout
-              <BiLogOut  className="ml-2"/>
-            </button>
+            <div className="flex items-center">
+              <div className="relative">
+                <button
+                  className="mr-5 px-2 py-1"
+                  onClick={() => setShowCart(!showCart)}
+                >
+                  <BiCartAdd className="text-2xl hover:text-teal-800" />
+                </button>
+                <CartDropdown showCart={showCart} />
+              </div>
+              <button
+                type="button"
+                className="flex items-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
+                onClick={logout}
+              >
+                Logout
+                <BiLogOut className="ml-2" />
+              </button>
+            </div>
           ) : null}
           <button
             onClick={() => setIsMobileMenuHidden(!isMobileMenuHidden)}

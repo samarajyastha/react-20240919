@@ -1,11 +1,13 @@
-import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { getProductById } from "../../api/products";
+import { addProductToCart } from "../../redux/cart/cartSlice";
+import { PRODUCTS_ROUTE } from "../../constants/routes";
+import { Link, useParams } from "react-router-dom";
 import { FaCartPlus, FaStar, FaStarHalf } from "react-icons/fa";
+import { BiLeftArrowAlt } from "react-icons/bi";
 import jacket from "../../assets/img/jacket.png";
 import Title from "../../components/Title";
-import { PRODUCTS_ROUTE } from "../../constants/routes";
-import { BiLeftArrowAlt } from "react-icons/bi";
 import Spinner from "../../components/Spinner";
 
 const ProductDetails = () => {
@@ -13,6 +15,12 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
 
   const params = useParams();
+
+  const dispatch = useDispatch();
+
+  function addToCart() {
+    dispatch(addProductToCart(product));
+  }
 
   useEffect(() => {
     getProductById(params.id)
@@ -40,13 +48,13 @@ const ProductDetails = () => {
         Back
       </Link>
       <div className="max-w-screen-xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-around">
+        <div className="grid md:grid-cols-2 justify-between min-h-[80vh] items-center">
           <img
             src={product?.url ?? jacket}
             alt=""
             className="w-auto max-h-[80vh]"
           />
-          <div className="md:w-1/2">
+          <div className="">
             <div className="flex text-orange-400">
               <FaStar />
               <FaStar />
@@ -71,7 +79,10 @@ const ProductDetails = () => {
               </span>
             </p>
 
-            <button className="bg-teal-800 px-3 py-1 text-white rounded hover:bg-teal-900 mt-4 flex items-center">
+            <button
+              className="bg-teal-800 px-3 py-1 text-white rounded hover:bg-teal-900 mt-4 flex items-center"
+              onClick={addToCart}
+            >
               Add to Cart
               <FaCartPlus className="ml-2" />
             </button>
