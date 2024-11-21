@@ -5,7 +5,7 @@ import { LOGIN_ROUTE } from "../../constants/routes";
 
 const Register = () => {
   return (
-    <section className="py-12">
+    <section className="py-12 min-h-[90vh]">
       <img
         src={loginBg}
         alt=""

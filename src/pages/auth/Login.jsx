@@ -5,7 +5,7 @@ import LoginForm from "../../components/auth/LoginForm";
 
 const Login = () => {
   return (
-    <section className="py-12">
+    <section className="py-12 min-h-[90vh]">
       <img src={loginBg} className="fixed top-0 left-0 opacity-10 -z-10" />
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex flex-col xl:flex-row items-center justify-around min-h-[75vh]">
