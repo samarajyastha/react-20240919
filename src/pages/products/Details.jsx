@@ -48,7 +48,7 @@ const ProductDetails = () => {
         Back
       </Link>
       <div className="max-w-screen-xl mx-auto px-4">
-        <div className="grid md:grid-cols-2 justify-between min-h-[80vh] items-center">
+        <div className="grid gap-x-8 md:grid-cols-2 justify-between min-h-[80vh] items-center">
           <img
             src={product?.url ?? jacket}
             alt=""
