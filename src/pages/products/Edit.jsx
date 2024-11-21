@@ -31,7 +31,7 @@ const EditProduct = () => {
   }, [params.id]);
 
   return (
-    <section className="py-5">
+    <section className="py-5 min-h-[90vh]">
       <Link to={PRODUCTS_ROUTE} className="px-5 py-2 flex items-center">
         <BiLeftArrowAlt className="mr-1" />
         Back
